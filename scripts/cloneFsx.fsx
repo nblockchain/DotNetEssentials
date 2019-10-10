@@ -5,9 +5,9 @@ open System.IO
 open System.Diagnostics
 
 //taken from http://fssnip.net/sw/title/RunProcess
-let runProc filename args startDir = 
+let runProc filename args startDir =
     let timer = Stopwatch.StartNew()
-    let procStartInfo = 
+    let procStartInfo =
         ProcessStartInfo(
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -23,7 +23,7 @@ let runProc filename args startDir =
     let p = new Process(StartInfo = procStartInfo)
     p.OutputDataReceived.AddHandler(DataReceivedEventHandler (outputHandler outputs.Add))
     p.ErrorDataReceived.AddHandler(DataReceivedEventHandler (outputHandler errors.Add))
-    let started = 
+    let started =
         try
             p.Start()
         with | ex ->

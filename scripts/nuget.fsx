@@ -66,4 +66,3 @@ else
                                     packageFile nugetApiKey defaultNugetFeedUrl
             }
         Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
-
