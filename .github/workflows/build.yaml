@@ -11,5 +11,7 @@ jobs:
           run: |
                   .\build.ps1
 
-        - name: Push package to GitHub registry
-          run: nuget push .\SOLUTION_FOLDER\PROJECT_FOLDER\Output\*.nupkg -Source "GPR" -SkipDuplicate
+        - name: Package and upload
+          run: |
+                   nuget.bat ${{ secrets.NUGET_API_KEY }}
+                   #          run: nuget push .\SOLUTION_FOLDER\PROJECT_FOLDER\Output\*.nupkg -Source "GPR" -SkipDuplicate
