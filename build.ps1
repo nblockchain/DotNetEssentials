@@ -24,14 +24,16 @@ Write-Output "Using MSBuild from: $msbuild"
 if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the stable NuGet package
+echo "Creating package"
 & $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER"
 if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the beta NuGet package
-& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER-beta"
-if ($lastexitcode -ne 0) { exit $lastexitcode; }
+#& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER-beta"
+#if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Copy everything into the output folder
+echo "Copying everything to ./Output"
 Copy-Item "./Xamarin.Essentials/bin/Release" "./Output" -Recurse -Force
 
 exit $lastexitcode;
