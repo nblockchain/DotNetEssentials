@@ -15,6 +15,7 @@ IF EXIST %ENTERPRISE% (
         EXIT /b 1
     )
 )
-
+echo "Running first script"
 %RUNNER% %FSXSCRIPT1% %*
+echo "Running second script"
 %RUNNER% %FSXSCRIPT2% %*
