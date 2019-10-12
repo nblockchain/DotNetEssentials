@@ -13,4 +13,4 @@ jobs:
 
         - name: Package and upload
           run: |
-              nuget.bat ${{ secrets.NUGET_API_KEY }}
+              nuget.bat oy2n7hceyshgkungjgwqyugc3ad4dg7etkt2oqut6zqwru
