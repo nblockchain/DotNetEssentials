@@ -45,7 +45,7 @@ let PackAndMaybeUpload (packageName: string) =
                                 nuspecFile.FullName nugetVersion
         }
 
-    Process.SafeExecute (nugetPackCmd, Echo.All) |> ignore
+//    Process.SafeExecute (nugetPackCmd, Echo.All) |> ignore
 
     let packageFile = sprintf "%s.%s.nupkg" packageName nugetVersion
     let argsPassedToThisScript = Misc.FsxArguments()
@@ -67,4 +67,5 @@ let PackAndMaybeUpload (packageName: string) =
             Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
 
 
+Console.Writeline "Packaging Xamarin.Essentials"
 PackAndMaybeUpload "Xamarin.Essentials"
