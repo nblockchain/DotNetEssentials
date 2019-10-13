@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $cibuild = "false"
-$date = get-date -format "MMddyyyy-HHmm"
+$date = get-date -format "yyyyMMdd"
 $hash = & git rev-parse --short HEAD
 
 # Find MSBuild on this machine
@@ -22,7 +22,7 @@ if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the stable NuGet package
 echo "Creating package"
-& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$date-$hash"
+& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$date-git$hash"
 if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the beta NuGet package
