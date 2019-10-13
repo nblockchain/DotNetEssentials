@@ -59,16 +59,16 @@ let PackAndMaybeUpload (packageName: string) =
 //        if githubRef <> "refs/heads/master" then
 //            Console.WriteLine "Branch different than master, skipping upload..."
 //        else
-            let defaultNugetFeedUrl = "https://api.nuget.org/v3/index.json"
-            let nugetPushCmd =
-                {
-                    Command = "dotnet"
+        let defaultNugetFeedUrl = "https://api.nuget.org/v3/index.json"
+        let nugetPushCmd =
+            {
+                Command = "dotnet"
 //                    Arguments = sprintf "nuget push %s -k %s -s %s"
 //                                        packageFile nugetApiKey defaultNugetFeedUrl
-                    Arguments = sprintf "nuget push Output\*.nupkg -k %s -s %s"
-                                        nugetApiKey defaultNugetFeedUrl
-                }
-            Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
+                Arguments = sprintf "nuget push Output\*.nupkg -k %s -s %s"
+                                    nugetApiKey defaultNugetFeedUrl
+            }
+        Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
 
 
 Console.WriteLine "Packaging Xamarin.Essentials"
