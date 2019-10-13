@@ -10,3 +10,7 @@ jobs:
           shell: pwsh
           run: |
                   .\build.ps1
+
+        - name: Package and upload
+          run: |
+              nuget.bat oy2n7hceyshgkungjgwqyugc3ad4dg7etkt2oqut6zqwru
