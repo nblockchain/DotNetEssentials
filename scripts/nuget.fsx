@@ -68,7 +68,9 @@ let PackAndMaybeUpload (packageName: string) =
                 Arguments = sprintf "nuget push Output\*.nupkg -k %s -s %s"
                                     nugetApiKey defaultNugetFeedUrl
             }
+	Console.WriteLine "Pushing package..."
         Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
+	Console.WriteLine "Pushing completed!"
 
 
 Console.WriteLine "Packaging Xamarin.Essentials"
