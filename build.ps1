@@ -1,11 +1,8 @@
 $ErrorActionPreference = "Stop"
 
 $cibuild = "false"
-
-# Make sure that we have something on non-bots
-if (!$env:BUILD_NUMBER) {
-    $env:BUILD_NUMBER = "0"
-}
+$date = get-date -format "MMddyyyy-HHmm"
+$hash = & git rev-parse --short HEAD
 
 # Find MSBuild on this machine
 if ($IsMacOS) {
@@ -25,12 +22,14 @@ if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the stable NuGet package
 echo "Creating package"
-& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER"
+& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$date-$hash"
 if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
 # Create the beta NuGet package
 #& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER-beta"
 #if ($lastexitcode -ne 0) { exit $lastexitcode; }
+
+get-childitem -recurse .\Output
 
 # Copy everything into the output folder
 echo "Copying everything to ./Output"
