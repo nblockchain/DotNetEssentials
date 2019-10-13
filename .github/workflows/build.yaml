@@ -1,16 +1,19 @@
 name: Sample build workflow
 on: push
 
+variables:
+        key: oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu
+
 jobs:
     build-deploy:
         runs-on: windows-latest
         steps:
         - uses: actions/checkout@v1
-        - name: Build
+        - name: Build and Package
           shell: pwsh
           run: |
-                  .\build.ps1
+              .\build.ps1
 
-        - name: Package and upload
+        - name: Upload
           run: |
-              nuget.bat oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu
+              .\nuget.bat $(key)
