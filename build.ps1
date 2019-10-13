@@ -29,10 +29,10 @@ if ($lastexitcode -ne 0) { exit $lastexitcode; }
 #& $msbuild "./Xamarin.Essentials/Xamarin.Essentials.csproj" /t:Pack /p:Configuration=Release /p:ContinuousIntegrationBuild=$cibuild /p:Deterministic=false /p:VersionSuffix=".$env:BUILD_NUMBER-beta"
 #if ($lastexitcode -ne 0) { exit $lastexitcode; }
 
-get-childitem -recurse .\Output
-
 # Copy everything into the output folder
 echo "Copying everything to ./Output"
 Copy-Item "./Xamarin.Essentials/bin/Release" "./Output" -Recurse -Force
+
+get-childitem -recurse .\Output
 
 exit $lastexitcode;
