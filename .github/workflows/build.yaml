@@ -12,7 +12,5 @@ jobs:
               .\build.ps1
 
         - name: Upload
-          env: 
-              key: ${{ 'oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu' }}
           run: |
-              .\nuget.bat $key
+              .\nuget.bat oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu
