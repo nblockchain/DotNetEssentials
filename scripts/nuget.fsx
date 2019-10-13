@@ -69,5 +69,5 @@ let PackAndMaybeUpload (packageName: string) =
             Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
 
 
-Console.Writeline "Packaging Xamarin.Essentials"
+Console.WriteLine "Packaging Xamarin.Essentials"
 PackAndMaybeUpload "Xamarin.Essentials"
