@@ -1,9 +1,6 @@
 name: Sample build workflow
 on: push
 
-variables:
-        key: oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu
-
 jobs:
     build-deploy:
         runs-on: windows-latest
@@ -15,5 +12,7 @@ jobs:
               .\build.ps1
 
         - name: Upload
+          env: 
+              key: ${{ oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu }}
           run: |
-              .\nuget.bat $(key)
+              .\nuget.bat $key
