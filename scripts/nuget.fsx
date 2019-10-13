@@ -45,7 +45,8 @@ let PackAndMaybeUpload (packageName: string) =
                                 nuspecFile.FullName nugetVersion
         }
 
-//    Process.SafeExecute (nugetPackCmd, Echo.All) |> ignore
+// SDK-style projects don't need this
+//      Process.SafeExecute (nugetPackCmd, Echo.All) |> ignore
 
     let packageFile = sprintf "%s.%s.nupkg" packageName nugetVersion
     let argsPassedToThisScript = Misc.FsxArguments()
@@ -54,9 +55,10 @@ let PackAndMaybeUpload (packageName: string) =
     else
         let nugetApiKey = argsPassedToThisScript.First()
         let githubRef = Environment.GetEnvironmentVariable "GITHUB_REF"
-        if githubRef <> "refs/heads/master" then
-            Console.WriteLine "Branch different than master, skipping upload..."
-        else
+// Had to disable this due to developing in a branch
+//        if githubRef <> "refs/heads/master" then
+//            Console.WriteLine "Branch different than master, skipping upload..."
+//        else
             let defaultNugetFeedUrl = "https://api.nuget.org/v3/index.json"
             let nugetPushCmd =
                 {
