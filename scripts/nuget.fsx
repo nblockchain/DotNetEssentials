@@ -61,8 +61,10 @@ let PackAndMaybeUpload (packageName: string) =
             let nugetPushCmd =
                 {
                     Command = "dotnet"
-                    Arguments = sprintf "nuget push %s -k %s -s %s"
-                                        packageFile nugetApiKey defaultNugetFeedUrl
+//                    Arguments = sprintf "nuget push %s -k %s -s %s"
+//                                        packageFile nugetApiKey defaultNugetFeedUrl
+                    Arguments = sprintf "nuget push Output\*.nupkg -k %s -s %s"
+                                        nugetApiKey defaultNugetFeedUrl
                 }
             Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
 
