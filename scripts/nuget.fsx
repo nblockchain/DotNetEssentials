@@ -11,7 +11,7 @@ open System.Linq
 open FSX.Infrastructure
 open Process
 
-let nugetDownloadUri = Uri "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+let nugetDownloadUri = Uri "https://dist.nuget.org/win-x86-commandline/v4.5.1/nuget.exe"
 Network.DownloadFile nugetDownloadUri
 
 // this is a translation of doing this in unix:
