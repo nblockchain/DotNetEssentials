@@ -13,4 +13,4 @@ jobs:
 
         - name: Upload
           run: |
-              .\nuget.bat oy2ac4q42q5ehsgpb2oqzp3khp3d5mruri4tnumla7opmu
+              .\nuget.bat ${{ secrets.NUGET_API_KEY }}
