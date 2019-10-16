@@ -1,4 +1,4 @@
-name: Sample build workflow
+name: Build, package and push workflow
 on: push
 
 jobs:
