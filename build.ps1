@@ -33,6 +33,4 @@ if ($lastexitcode -ne 0) { exit $lastexitcode; }
 echo "Copying everything to ./Output"
 Copy-Item "./Xamarin.Essentials/bin/Release" "./Output" -Recurse -Force
 
-get-childitem -recurse .\Output
-
 exit $lastexitcode;
