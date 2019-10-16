@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $cibuild = "false"
-$date = get-date -format "yyyyMMdd-HH:mm"
+$date = get-date -format "yyyyMMdd-HHmm"
 $hash = & git rev-parse --short HEAD
 
 # Find MSBuild on this machine
