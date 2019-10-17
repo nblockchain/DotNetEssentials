@@ -6,9 +6,9 @@
     <RootNamespace>Xamarin.Essentials</RootNamespace>
     <PackageId>DotNetEssentials</PackageId>
     <PackageIcon>Assets\xamarin.essentials_128x128.png</PackageIcon>
-    <Summary>DotNetEssentials: a kit of essential API's for your apps</Summary>
+    <Summary>Xamarin.Essentials: a kit of essential API's for your apps</Summary>
     <PackageTags>xamarin, windows, ios, android, xamarin.forms, watchos, tvos, toolkit, Xamarin.Essentials, kit</PackageTags>
-    <Title>DotNetEssentials</Title>
+    <Title>Xamarin.Essentials</Title>
     <Description>Xamarin.Essentials: a kit of essential API's for your apps</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
