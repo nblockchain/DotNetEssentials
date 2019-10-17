@@ -10,8 +10,12 @@ open System.Linq
 #load "../fsx/InfraLib/Network.fs"
 open FSX.Infrastructure
 open Process
+open System.IO
+open System.Linq
 
 let PackAndMaybeUpload (packageName: string) =
+    let outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output") |> DirectoryInfo
+    let nupkgFile = outputDir.EnumerateFiles().Single(fun file -> file.FullName.EndsWith ".nupkg")a
     let argsPassedToThisScript = Misc.FsxArguments()
     if argsPassedToThisScript.Length <> 1 then
         Console.WriteLine "NUGET_API_KEY not passed to script, skipping upload..."
@@ -26,8 +30,8 @@ let PackAndMaybeUpload (packageName: string) =
         let nugetPushCmd =
             {
                 Command = "dotnet"
-                Arguments = sprintf "nuget push Output\*.nupkg -k %s -s %s"
-                                    nugetApiKey defaultNugetFeedUrl
+                Arguments = sprintf "nuget push %s -k %s -s %s"
+                                    nupkgFile.FullName nugetApiKey defaultNugetFeedUrl
             }
         Console.WriteLine "Pushing package..."
         Process.SafeExecute (nugetPushCmd, Echo.All) |> ignore
