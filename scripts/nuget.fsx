@@ -13,7 +13,7 @@ open Process
 open System.IO
 open System.Linq
 
-let PackAndMaybeUpload (packageName: string) =
+let MaybeUpload (packageName: string) =
     let outputDir = Path.Combine(Directory.GetCurrentDirectory(), "Output") |> DirectoryInfo
     let nupkgFile = outputDir.EnumerateFiles().Single(fun file -> file.FullName.EndsWith ".nupkg")
     let argsPassedToThisScript = Misc.FsxArguments()
@@ -39,4 +39,4 @@ let PackAndMaybeUpload (packageName: string) =
 
 
 Console.WriteLine "Packaging..."
-PackAndMaybeUpload "Xamarin.Essentials"
+MaybeUpload "Xamarin.Essentials"
