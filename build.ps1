@@ -1,6 +1,12 @@
 $ErrorActionPreference = "Stop"
 
 $cibuild = "false"
+
+# Make sure that we have something on non-bots
+if (!$env:BUILD_NUMBER) {
+    $env:BUILD_NUMBER = "0"
+}
+
 $date = get-date -format "yyyyMMdd-HHmm"
 $hash = & git rev-parse --short HEAD
 
